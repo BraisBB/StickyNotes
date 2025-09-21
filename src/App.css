@@ -1,0 +1,18 @@
+/* Solo los estilos específicos que Bootstrap no tiene */
+.app-container {
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.drag-area {
+  -webkit-app-region: drag;
+  height: 40px;
+  cursor: move;
+}
+
+.no-drag {
+  -webkit-app-region: no-drag;
+}
