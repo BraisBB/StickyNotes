@@ -1,4 +1,3 @@
-// Exportar todos los componentes desde StickyNote
+// Exportar todos los componentes
 export { TaskItem, NoteItem, NoteForm } from './StickyNote';
-
-// Ahora puedes importar desde: import { NoteItem } from '../components'
+export { TaskCounter } from './TaskCounter';

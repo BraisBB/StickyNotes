@@ -15,9 +15,7 @@ export const useNotes = () => {
 
   // Auto-guardar cuando cambien las notas
   useEffect(() => {
-    if (notes.length > 0) {
-      saveNotes(notes);
-    }
+    saveNotes(notes);
   }, [notes]);
 
   // Redimensionar ventana automáticamente según contenido
@@ -62,16 +60,6 @@ export const useNotes = () => {
     setNotes(prevNotes => prevNotes.filter(note => note.id !== noteId));
   };
 
-  // Actualizar título de nota
-  const updateNoteTitle = (noteId: string, newTitle: string) => {
-    setNotes(prevNotes => 
-      prevNotes.map(note => 
-        note.id === noteId 
-          ? { ...note, title: newTitle }
-          : note
-      )
-    );
-  };
 
   // Cambiar color de nota
   const updateNoteColor = (noteId: string, newColor: string) => {
@@ -135,7 +123,6 @@ export const useNotes = () => {
     notes,
     addNote,
     deleteNote,
-    updateNoteTitle,
     updateNoteColor,
     addTask,
     toggleTask,

@@ -1,4 +1,2 @@
-// Exportar el custom hook principal
+// Exportar custom hook
 export { useNotes } from './useNotes';
-
-// Ahora puedes importar desde: import { useNotes } from '../hooks'

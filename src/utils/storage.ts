@@ -32,12 +32,3 @@ export const loadNotes = (): StickyNote[] => {
   }
 };
 
-// Limpiar todo el storage (útil para testing o reset)
-export const clearStorage = (): void => {
-  try {
-    localStorage.removeItem(STORAGE_KEY);
-    console.log('Storage limpiado correctamente');
-  } catch (error) {
-    console.error('Error al limpiar storage:', error);
-  }
-};

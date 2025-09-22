@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 import { useNotes } from './hooks';
-import { NoteItem, NoteForm } from './components';
+import { NoteItem, NoteForm, TaskCounter } from './components';
 
 function App() {
   // Hook personalizado para manejar todas las notas
@@ -30,7 +30,7 @@ function App() {
       <div className="drag-area bg-light border-bottom d-flex align-items-center justify-content-between px-3">
         <span className="fw-semibold text-muted small">StickyNotes</span>
         <div className="d-flex align-items-center gap-2">
-          <small className="text-muted">{notes.length} notas</small>
+          <TaskCounter notes={notes} />
           
           {/* Botones de control de ventana */}
           <div className="window-controls d-flex gap-1">
