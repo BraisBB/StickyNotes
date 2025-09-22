@@ -5,6 +5,8 @@ declare global {
   interface Window {
     electronAPI?: {
       resizeWindow: (width: number, height: number) => void;
+      minimizeWindow: () => void;
+      closeWindow: () => void;
     };
   }
 }

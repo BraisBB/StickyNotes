@@ -23,3 +23,8 @@
   flex-grow: 1;
   overflow: hidden;
 }
+
+/* Solo estilos que Bootstrap no puede manejar */
+.window-controls {
+  -webkit-app-region: no-drag;
+}

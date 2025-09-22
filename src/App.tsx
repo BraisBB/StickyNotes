@@ -29,7 +29,47 @@ function App() {
       {/* Área para arrastrar - usando clases de Bootstrap */}
       <div className="drag-area bg-light border-bottom d-flex align-items-center justify-content-between px-3">
         <span className="fw-semibold text-muted small">StickyNotes</span>
-        <small className="text-muted">{notes.length} notas</small>
+        <div className="d-flex align-items-center gap-2">
+          <small className="text-muted">{notes.length} notas</small>
+          
+          {/* Botones de control de ventana */}
+          <div className="window-controls d-flex gap-1">
+            <button
+              className="btn btn-secondary btn-sm d-flex align-items-center justify-content-center p-0"
+              style={{ width: '20px', height: '20px', fontSize: '12px', lineHeight: '1' }}
+              onClick={() => (window as any).electronAPI?.minimizeWindow?.()}
+              onMouseEnter={(e) => {
+                e.currentTarget.classList.remove('btn-secondary');
+                e.currentTarget.classList.add('btn-warning');
+                e.currentTarget.style.color = '#000';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.classList.remove('btn-warning');
+                e.currentTarget.classList.add('btn-secondary');
+                e.currentTarget.style.color = '';
+              }}
+              title="Minimizar"
+            >
+              −
+            </button>
+            <button
+              className="btn btn-secondary btn-sm d-flex align-items-center justify-content-center p-0"
+              style={{ width: '20px', height: '20px', fontSize: '12px', lineHeight: '1' }}
+              onClick={() => (window as any).electronAPI?.closeWindow?.()}
+              onMouseEnter={(e) => {
+                e.currentTarget.classList.remove('btn-secondary');
+                e.currentTarget.classList.add('btn-danger');
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.classList.remove('btn-danger');
+                e.currentTarget.classList.add('btn-secondary');
+              }}
+              title="Cerrar"
+            >
+              ✕
+            </button>
+          </div>
+        </div>
       </div>
       
       {/* Contenido principal */}

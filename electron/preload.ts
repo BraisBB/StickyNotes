@@ -23,9 +23,15 @@ contextBridge.exposeInMainWorld('ipcRenderer', {
   // ...
 })
 
-// Exponer API para redimensionar ventana
+// Exponer API para controlar la ventana
 contextBridge.exposeInMainWorld('electronAPI', {
   resizeWindow: (width: number, height: number) => {
     ipcRenderer.send('resize-window', width, height)
+  },
+  minimizeWindow: () => {
+    ipcRenderer.send('minimize-window')
+  },
+  closeWindow: () => {
+    ipcRenderer.send('close-window')
   }
 })

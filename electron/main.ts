@@ -58,6 +58,20 @@ function createWindow() {
     }
   })
 
+  // Manejar minimizar ventana
+  win.webContents.ipc.on('minimize-window', () => {
+    if (win) {
+      win.minimize()
+    }
+  })
+
+  // Manejar cerrar ventana
+  win.webContents.ipc.on('close-window', () => {
+    if (win) {
+      win.close()
+    }
+  })
+
   if (VITE_DEV_SERVER_URL) {
     win.loadURL(VITE_DEV_SERVER_URL)
   } else {

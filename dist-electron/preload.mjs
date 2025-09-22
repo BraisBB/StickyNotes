@@ -23,5 +23,11 @@ electron.contextBridge.exposeInMainWorld("ipcRenderer", {
 electron.contextBridge.exposeInMainWorld("electronAPI", {
   resizeWindow: (width, height) => {
     electron.ipcRenderer.send("resize-window", width, height);
+  },
+  minimizeWindow: () => {
+    electron.ipcRenderer.send("minimize-window");
+  },
+  closeWindow: () => {
+    electron.ipcRenderer.send("close-window");
   }
 });
