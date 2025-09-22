@@ -20,3 +20,8 @@ electron.contextBridge.exposeInMainWorld("ipcRenderer", {
   // You can expose other APTs you need here.
   // ...
 });
+electron.contextBridge.exposeInMainWorld("electronAPI", {
+  resizeWindow: (width, height) => {
+    electron.ipcRenderer.send("resize-window", width, height);
+  }
+});

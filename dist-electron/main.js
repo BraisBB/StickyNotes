@@ -13,11 +13,17 @@ let win;
 function createWindow() {
   win = new BrowserWindow({
     width: 300,
-    // Ancho fijo de 400px
-    height: 300,
-    // Alto fijo de 600px
-    resizable: false,
-    // No se puede cambiar el tamaño
+    // Ancho fijo
+    height: 200,
+    // Alto mínimo inicial
+    minWidth: 300,
+    // Ancho mínimo
+    minHeight: 200,
+    // Alto mínimo
+    maxWidth: 300,
+    // Ancho máximo (mantener fijo)
+    resizable: true,
+    // Permitir resize vertical
     frame: false,
     // Sin bordes del navegador
     alwaysOnTop: false,
@@ -37,6 +43,11 @@ function createWindow() {
   });
   win.webContents.on("did-finish-load", () => {
     win == null ? void 0 : win.webContents.send("main-process-message", (/* @__PURE__ */ new Date()).toLocaleString());
+  });
+  win.webContents.ipc.on("resize-window", (_event, width, height) => {
+    if (win) {
+      win.setSize(width, height);
+    }
   });
   if (VITE_DEV_SERVER_URL) {
     win.loadURL(VITE_DEV_SERVER_URL);

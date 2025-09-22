@@ -28,9 +28,12 @@ let win: BrowserWindow | null
 
 function createWindow() {
   win = new BrowserWindow({
-    width: 300,              // Ancho fijo de 400px
-    height: 300,             // Alto fijo de 600px
-    resizable: false,        // No se puede cambiar el tamaño
+    width: 300,              // Ancho fijo
+    height: 200,             // Alto mínimo inicial
+    minWidth: 300,           // Ancho mínimo
+    minHeight: 200,          // Alto mínimo
+    maxWidth: 300,           // Ancho máximo (mantener fijo)
+    resizable: true,         // Permitir resize vertical
     frame: false,            // Sin bordes del navegador
     alwaysOnTop: false,       // Siempre visible encima de todo
     transparent: true,       // Fondo transparente
@@ -46,6 +49,13 @@ function createWindow() {
   // Test active push message to Renderer-process.
   win.webContents.on('did-finish-load', () => {
     win?.webContents.send('main-process-message', (new Date).toLocaleString())
+  })
+
+  // Manejar redimensionamiento de ventana
+  win.webContents.ipc.on('resize-window', (_event, width: number, height: number) => {
+    if (win) {
+      win.setSize(width, height)
+    }
   })
 
   if (VITE_DEV_SERVER_URL) {

@@ -20,6 +20,31 @@ export const useNotes = () => {
     }
   }, [notes]);
 
+  // Redimensionar ventana automáticamente según contenido
+  useEffect(() => {
+    const resizeWindow = () => {
+      // Calcular altura necesaria basada en contenido
+      const baseHeight = 120; // Header + padding base
+      const noteHeight = 280; // Altura aproximada por nota
+      
+      // Calcular número total de tareas
+      const totalTasks = notes.reduce((sum, note) => sum + note.tasks.length, 0);
+      const taskHeight = totalTasks * 35; // ~35px por tarea
+      
+      const calculatedHeight = baseHeight + (notes.length * noteHeight) + taskHeight;
+      const finalHeight = Math.max(200, Math.min(calculatedHeight, 800)); // Entre 200px y 800px
+      
+      // Redimensionar ventana si estamos en Electron
+      if ((window as any).electronAPI?.resizeWindow) {
+        (window as any).electronAPI.resizeWindow(300, finalHeight);
+      }
+    };
+
+    // Pequeño delay para que el DOM se actualice
+    const timer = setTimeout(resizeWindow, 100);
+    return () => clearTimeout(timer);
+  }, [notes]);
+
   // Agregar nueva nota
   const addNote = (title: string, color: string = DEFAULT_COLOR) => {
     const newNote: StickyNote = {

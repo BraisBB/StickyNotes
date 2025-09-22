@@ -22,3 +22,10 @@ contextBridge.exposeInMainWorld('ipcRenderer', {
   // You can expose other APTs you need here.
   // ...
 })
+
+// Exponer API para redimensionar ventana
+contextBridge.exposeInMainWorld('electronAPI', {
+  resizeWindow: (width: number, height: number) => {
+    ipcRenderer.send('resize-window', width, height)
+  }
+})

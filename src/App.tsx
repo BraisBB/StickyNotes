@@ -33,7 +33,7 @@ function App() {
       </div>
       
       {/* Contenido principal */}
-      <div className="no-drag p-3" style={{ maxHeight: '500px', overflowY: 'auto' }}>
+      <div className="no-drag p-3">
         
         {/* Botón para agregar nueva nota */}
         {!showForm && (
