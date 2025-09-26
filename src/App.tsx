@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 import { useNotes } from './hooks';
-import { NoteItem, NoteForm, TaskCounter } from './components';
+import { NoteItem, NoteForm, TaskCounter, BatAnimation } from './components';
 
 function App() {
   // Hook personalizado para manejar todas las notas
@@ -28,7 +28,7 @@ function App() {
     <div className="app-container shadow-lg">
       {/* Área para arrastrar - usando clases de Bootstrap */}
       <div className="drag-area bg-light border-bottom d-flex align-items-center justify-content-between px-3">
-        <span className="fw-semibold text-muted small">StickyNotes</span>
+        <BatAnimation />
         <div className="d-flex align-items-center gap-2">
           <TaskCounter notes={notes} />
           
@@ -37,7 +37,7 @@ function App() {
             <button
               className="btn btn-secondary btn-sm d-flex align-items-center justify-content-center p-0"
               style={{ width: '20px', height: '20px', fontSize: '12px', lineHeight: '1' }}
-              onClick={() => (window as any).electronAPI?.minimizeWindow?.()}
+              onClick={() => window.electronAPI?.minimizeWindow?.()}
               onMouseEnter={(e) => {
                 e.currentTarget.classList.remove('btn-secondary');
                 e.currentTarget.classList.add('btn-warning');
@@ -55,7 +55,7 @@ function App() {
             <button
               className="btn btn-secondary btn-sm d-flex align-items-center justify-content-center p-0"
               style={{ width: '20px', height: '20px', fontSize: '12px', lineHeight: '1' }}
-              onClick={() => (window as any).electronAPI?.closeWindow?.()}
+              onClick={() => window.electronAPI?.closeWindow?.()}
               onMouseEnter={(e) => {
                 e.currentTarget.classList.remove('btn-secondary');
                 e.currentTarget.classList.add('btn-danger');

@@ -33,8 +33,8 @@ export const useNotes = () => {
       const finalHeight = Math.max(200, Math.min(calculatedHeight, 800)); // Entre 200px y 800px
       
       // Redimensionar ventana si estamos en Electron
-      if ((window as any).electronAPI?.resizeWindow) {
-        (window as any).electronAPI.resizeWindow(300, finalHeight);
+      if (window.electronAPI?.resizeWindow) {
+        window.electronAPI.resizeWindow(300, finalHeight);
       }
     };
 

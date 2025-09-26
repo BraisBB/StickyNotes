@@ -26,9 +26,9 @@ let win: BrowserWindow | null
 function createWindow() {
   win = new BrowserWindow({
     width: 300,              // Ancho fijo
-    height: 200,             // Alto mínimo inicial
+    height: 300,             // Alto mínimo inicial
     minWidth: 300,           // Ancho mínimo
-    minHeight: 200,          // Alto mínimo
+    minHeight: 300,          // Alto mínimo
     maxWidth: 300,           // Ancho máximo (mantener fijo)
     resizable: true,         // Permitir resize vertical
     frame: false,            // Sin bordes del navegador
