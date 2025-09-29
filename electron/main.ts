@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, ipcMain } from 'electron'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
 
@@ -44,26 +44,8 @@ function createWindow() {
   })
 
 
-  // Manejar redimensionamiento de ventana
-  win.webContents.ipc.on('resize-window', (_event, width: number, height: number) => {
-    if (win) {
-      win.setSize(width, height)
-    }
-  })
-
-  // Manejar minimizar ventana
-  win.webContents.ipc.on('minimize-window', () => {
-    if (win) {
-      win.minimize()
-    }
-  })
-
-  // Manejar cerrar ventana
-  win.webContents.ipc.on('close-window', () => {
-    if (win) {
-      win.close()
-    }
-  })
+  // Los listeners de IPC deben estar fuera de createWindow
+  // para evitar duplicados al recrear la ventana
 
   if (VITE_DEV_SERVER_URL) {
     win.loadURL(VITE_DEV_SERVER_URL)
@@ -87,6 +69,25 @@ app.on('activate', () => {
   // dock icon is clicked and there are no other windows open.
   if (BrowserWindow.getAllWindows().length === 0) {
     createWindow()
+  }
+})
+
+// Configurar listeners de IPC
+ipcMain.on('resize-window', (_event, width: number, height: number) => {
+  if (win) {
+    win.setSize(width, height)
+  }
+})
+
+ipcMain.on('minimize-window', () => {
+  if (win) {
+    win.minimize()
+  }
+})
+
+ipcMain.on('close-window', () => {
+  if (win) {
+    win.close()
   }
 })
 

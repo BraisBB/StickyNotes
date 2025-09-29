@@ -26,7 +26,14 @@ contextBridge.exposeInMainWorld('ipcRenderer', {
 // Exponer API para controlar la ventana
 contextBridge.exposeInMainWorld('electronAPI', {
   resizeWindow: (width: number, height: number) => {
-    ipcRenderer.send('resize-window', width, height)
+    // Validar que los argumentos sean números válidos
+    if (typeof width === 'number' && typeof height === 'number' && 
+        !isNaN(width) && !isNaN(height) && 
+        width > 0 && height > 0) {
+      ipcRenderer.send('resize-window', Math.round(width), Math.round(height))
+    } else {
+      console.error('resizeWindow: argumentos inválidos', { width, height })
+    }
   },
   minimizeWindow: () => {
     ipcRenderer.send('minimize-window')

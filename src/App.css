@@ -1,13 +1,9 @@
 /* Solo los estilos específicos que Bootstrap no tiene */
 .app-container {
-  min-height: 100vh;
-  width: 100vw;
+  width: 100%;
+  min-height: 299px;
   background: rgba(255, 239, 185, 0.95);
-  backdrop-filter: blur(10px);
-  border-radius: 15px;
-  display: flex;
   flex-direction: column;
-  box-sizing: border-box;
 }
 
 .drag-area {
@@ -20,7 +16,7 @@
 .no-drag {
   -webkit-app-region: no-drag;
   flex: 1;
-  overflow: hidden;
+  overflow: visible;
 }
 
 /* Solo estilos que Bootstrap no puede manejar */
