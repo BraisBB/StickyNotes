@@ -1,7 +1,7 @@
-import BatAnimation from './BatAnimation';
-import { TaskCounter } from './TaskCounter';
-import { WindowButton } from './WindowButton';
-import { StickyNote } from '../types';
+import BatAnimation from '../BatAnimation/BatAnimation';
+import { TaskCounter } from '../shared/TaskCounter';
+import { WindowButton } from '../shared/WindowButton';
+import { StickyNote } from '../../../types';
 
 interface NavBarProps {
   notes: StickyNote[];

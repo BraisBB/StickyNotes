@@ -1,4 +1,4 @@
-import { StickyNote } from '../types';
+import { StickyNote } from '../../../types';
 
 // Props que recibe el componente
 interface TaskCounterProps {

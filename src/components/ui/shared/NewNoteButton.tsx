@@ -1,4 +1,4 @@
-import { NEW_NOTE_BUTTON_COLOR } from '../types/constants';
+import { NEW_NOTE_BUTTON_COLOR } from '../../../types/constants';
 
 interface NewNoteButtonProps {
   onClick: () => void;
