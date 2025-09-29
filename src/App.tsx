@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import { useNotes } from './hooks';
 import { NoteItem, NoteForm, NewNoteButton, NavBar } from './components';
@@ -17,6 +17,34 @@ function App() {
 
   // Estado para mostrar/ocultar formulario de nueva nota
   const [showForm, setShowForm] = useState(false);
+
+  // Redimensionar ventana automáticamente
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      // Calcular altura basándose en contenido real, no en scrollHeight
+      let totalHeight = 40; // NavBar
+      totalHeight += 24; // Padding del contenedor
+      
+      if (notes.length === 0 && !showForm) {
+        totalHeight += 45 + 80; // Botón + mensaje vacío
+      } else {
+        if (!showForm) totalHeight += 45; // Botón Nueva Nota
+        if (showForm) totalHeight += 180; // Formulario
+        
+        // Cada nota: altura base + tareas
+        notes.forEach(note => {
+          totalHeight += 200; // Altura base de la nota
+          totalHeight += note.tasks.length * 40; // Cada tarea
+          totalHeight += 12; // Margen inferior
+        });
+      }
+      
+      const finalHeight = Math.max(250, Math.min(totalHeight, 900));
+      window.electronAPI?.resizeWindow?.(300, finalHeight);
+    });
+    
+    return () => cancelAnimationFrame(frame);
+  }, [notes, showForm]);
 
   // Crear nueva nota
   const handleCreateNote = (title: string, color: string) => {
