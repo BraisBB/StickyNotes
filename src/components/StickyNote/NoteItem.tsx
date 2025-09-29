@@ -23,6 +23,10 @@ export const NoteItem = ({
 }: NoteItemProps) => {
   const [newTaskText, setNewTaskText] = useState('');
 
+  // Debug: Verificar el color de la nota actual
+  console.log('NoteItem - note.color:', note.color);
+  console.log('NoteItem - AVAILABLE_COLORS:', AVAILABLE_COLORS);
+
   // Agregar nueva tarea
   const handleAddTask = () => {
     if (newTaskText.trim()) {
