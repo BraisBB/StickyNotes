@@ -1,9 +1,13 @@
 /* Solo los estilos específicos que Bootstrap no tiene */
 .app-container {
   width: 100%;
-  min-height: 299px;
-  background: rgba(255, 239, 185, 0.95);
+  min-height: 250px;
+  background: rgba(211, 209, 203, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  display: flex;
   flex-direction: column;
+  box-sizing: border-box;
 }
 
 .drag-area {

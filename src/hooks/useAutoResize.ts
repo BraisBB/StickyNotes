@@ -18,7 +18,6 @@ export const useAutoResize = (options: UseAutoResizeOptions) => {
       
       const appContainer = containerRef.current;
       const contentHeight = appContainer.offsetHeight;
-      
       const finalHeight = Math.max(minHeight, Math.min(contentHeight, maxHeight));
       
       window.electronAPI?.resizeWindow(width, finalHeight);
