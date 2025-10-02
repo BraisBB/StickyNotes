@@ -11,7 +11,7 @@ export const NavBar = ({ notes }: NavBarProps) => {
   return (
     <div className="drag-area bg-light border-bottom d-flex align-items-center justify-content-between px-3">
       <BatAnimation />
-      <div className="d-flex align-items-center gap-2">
+      <div className="d-flex align-items-center gap-3">
         <TaskCounter notes={notes} />
         
         {/* Botones de control de ventana */}

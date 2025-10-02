@@ -30,7 +30,7 @@ function App() {
 
   return (
     // Contenedor principal - se redimensiona automáticamente según el contenido
-    <div ref={appContainerRef} className="app-container shadow-lg" style={{ height: 'auto' }}>
+    <div ref={appContainerRef} className="app-container " style={{ height: 'auto' }}>
       {/* Barra de navegación */}
       <NavBar notes={notes} />
       

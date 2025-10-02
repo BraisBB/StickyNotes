@@ -12,11 +12,6 @@ export const NoteForm = ({ onCreateNote, onCancel }: NoteFormProps) => {
   const [title, setTitle] = useState('');
   const [selectedColor, setSelectedColor] = useState(DEFAULT_COLOR);
 
-  // Debug: Verificar que los colores se están importando correctamente
-  console.log('NoteForm - AVAILABLE_COLORS:', AVAILABLE_COLORS);
-  console.log('NoteForm - DEFAULT_COLOR:', DEFAULT_COLOR);
-  console.log('NoteForm - selectedColor:', selectedColor);
-
   // Crear nota
   const handleSubmit = () => {
     if (title.trim()) {
